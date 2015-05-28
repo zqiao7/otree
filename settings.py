@@ -289,6 +289,14 @@ SESSION_TYPES = [
             'lemon_market', 'payment_info'
         ],
     },
+	{
+        'name': 'club_good_game',
+        'display_name': "Club Good Game",
+        'num_demo_participants': 3,
+        'app_sequence': [
+            'serial_cost_sharing', 'payment_info'
+        ],
+    },
 ]
 
 
