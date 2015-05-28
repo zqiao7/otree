@@ -7,34 +7,37 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-
-class MyPage(Page):
+	
+	
+class  Contribute(Page):
 
     form_model = models.Player
-    form_fields = ['my_field']
+    form_fields = ['contribution']
 
-    def is_displayed(self):
-        return True
 
-    def vars_for_template(self):
-        return {
-            'my_variable_here': 1,
-        }
 
 
 class ResultsWaitPage(WaitPage):
 
-    def after_all_players_arrive(self):
-        self.group.set_payoffs()
+	def after_all_players_arrive(self):
+		self.group.set_payoffs()
+		
+	def body_text(self):
+		return "Waiting for other participants to contribute."
 
 
 class Results(Page):
 
-    pass
+	def vars_for_template(self):
+
+		return {
+            'whether provision': self.group.provision_success,
+            'individual_earnings': self.player.payoff,
+        }
 
 
 page_sequence =[
-        MyPage,
+        Contribute,
         ResultsWaitPage,
         Results
     ]

@@ -27,10 +27,8 @@ class Constants:
 	valuation = [29, 45, 90]		#valuation
 	payoff_if_fail = c(0)
 	
-	offer_choices = [0, 1/2, 1/3]
-	offer_choices_count = len(offer_choices)
+	offer_choices = [0, 1/3, 1/2]
 
-    # define more constants here
 
 
 class Subsession(otree.models.BaseSubsession):
@@ -38,7 +36,7 @@ class Subsession(otree.models.BaseSubsession):
 	def before_session_starts(self):
 		# randomly assign values
 		for g in self.get_players():
-			g.value = random.choice(constants.valuation,1)
+			g.value = random.choice(Constants.valuation)
 
 
 class Group(otree.models.BaseGroup):
@@ -48,9 +46,6 @@ class Group(otree.models.BaseGroup):
 
 	
 	valuation = models.CurrencyField()
-	amount_offered = models.CurrencyField(choices=Constants.offer_choices)
-	#total_contribution = models.CurrencyField()
-	#individual_share = models.CurrencyField()
 	provision_success = models.BooleanField()
 	individual_share = models.BooleanField()
 	
@@ -70,9 +65,9 @@ class Group(otree.models.BaseGroup):
 			p.valuation =  p.value
 			
 			if self.provision_success:
-				p.individual_share = p.valuation > min(constants.valuation)
+				p.individual_share = p.valuation > min(Constants.valuation)
 				if p.individual_share:
-					p.payoff = p.valuation - constants.cost/num_of_members
+					p.payoff = p.valuation - Constants.cost/num_of_members
 				else:
 					p.payoff = 0
 			else:
@@ -81,25 +76,12 @@ class Group(otree.models.BaseGroup):
 
 class Player(otree.models.BasePlayer):
     # <built-in>
-    subsession = models.ForeignKey(Subsession)
-    group = models.ForeignKey(Group, null = True)
-    # </built-in>
-
-    
-	# def other_player(self):
-        # """Returns other player in group. Only valid for 2-player groups."""
-        # return self.get_others_in_group()[0]
-
-    # # example field
-    # my_field = models.CurrencyField(
-        # min=c(0),
-        # max=c(10),
-        # doc="""
-        # Description of this field, for documentation
-        # """
-    # )
-
-
-    # def role(self):
-        # # you can make this depend of self.id_in_group
-        # return ''
+	subsession = models.ForeignKey(Subsession)
+	group = models.ForeignKey(Group, null = True)
+	
+	contribution = models.CharField(
+        choices = Constants.offer_choices,
+        doc="""The player's choice""",
+        widget=widgets.RadioSelect()
+    )
+	
