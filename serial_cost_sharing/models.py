@@ -10,7 +10,7 @@ from otree import widgets
 from otree.common import Currency as c, currency_range, safe_json
 
 import numpy as np
-
+from fractions import Fraction
 # </standard imports>
 
 author = 'Your name here'
@@ -23,20 +23,19 @@ class Constants:
 	name_in_url = 'serial_cost_sharing'
 	players_per_group = 3
 	num_rounds = 1
-	cost = 102						#provision cost
-	valuation = [29, 45, 90]		#valuation
+	cost = c(102)						#provision cost
+	valuation = [c(29), c(45), c(90)]		#valuation
+	payoff_if_excluded = c(0)
 	payoff_if_fail = c(0)
 	
-	offer_choices = [0, 1/3, 1/2]
+	
+	offer_choices = ['0', '1/3', '1/2']
 
 
 
 class Subsession(otree.models.BaseSubsession):
     
-	def before_session_starts(self):
-		# randomly assign values
-		for g in self.get_players():
-			g.value = random.choice(Constants.valuation)
+	pass
 
 
 class Group(otree.models.BaseGroup):
@@ -45,15 +44,18 @@ class Group(otree.models.BaseGroup):
     # </built-in>
 
 	
-	valuation = models.CurrencyField()
 	provision_success = models.BooleanField()
 	individual_share = models.BooleanField()
 	
 	def set_payoffs(self):
-		#p1, p2, p3 = self.get_players()
 		
-		contrib = [p.contribution for p in self.get_players()]
-		self.provision_success = min(contrib) > 0 or min(contrib.remove(min.contrib)) == 1/2
+		contrib = [float(Fraction(p.contribution)) for p in self.get_players()]
+		
+		self.provision_success = (
+			min(contrib) > 0 or 
+			min(contrib.remove(min(contrib))) == 1/2
+		)
+		
 		if self.provision_success:
 			if min(contrib)>0:
 				num_of_members = 3
@@ -62,26 +64,34 @@ class Group(otree.models.BaseGroup):
 			
 		
 		for p in self.get_players():
-			p.valuation =  p.value
 			
 			if self.provision_success:
-				p.individual_share = p.valuation > min(Constants.valuation)
+				p.individual_share = p.private_value > min(Constants.valuation)
 				if p.individual_share:
-					p.payoff = p.valuation - Constants.cost/num_of_members
+					p.payoff = p.private_value - Constants.cost/num_of_members
 				else:
-					p.payoff = 0
+					p.payoff = Constants.payoff_if_excluded
 			else:
-				p.payoff = 0
+				p.payoff = Constants.payoff_if_fail
 
 
 class Player(otree.models.BasePlayer):
     # <built-in>
 	subsession = models.ForeignKey(Subsession)
 	group = models.ForeignKey(Group, null = True)
+	# <built-in>
+	
+	private_value = models.CurrencyField(
+		null=True,
+		doc="How much the player values the item, generated randomly"
+	)
 	
 	contribution = models.CharField(
-        choices = Constants.offer_choices,
-        doc="""The player's choice""",
-        widget=widgets.RadioSelect()
-    )
+		choices = Constants.offer_choices,
+		doc="""The player's choice""",
+		widget=widgets.RadioSelect()
+	)
+	
+	def generate_private_value(self):
+		return random.choice(Constants.valuation)
 	
