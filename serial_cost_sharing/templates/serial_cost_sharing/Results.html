@@ -24,10 +24,10 @@ http://getbootstrap.com/components/
         {% endfor %}
 
         <tr><td colspan="2"><hr/></td></tr>
-		<tr><td>Is the project provision successful?  -- {{ Group.provision_success }}</td></tr> 
+		<tr><td>Is the project provision successful?  -- {{ whether_provision }}</td></tr> 
         
 		<tr><td colspan="2"><hr/></td></tr>
-		<tr><td>So you will get:</td><td>{{ player.payoff }}</td></tr>
+		<tr><td>So you will get:</td><td>{{ individual_earnings }}</td></tr>
     </table>
     <p></p>
 

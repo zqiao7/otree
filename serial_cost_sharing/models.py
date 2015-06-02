@@ -50,10 +50,11 @@ class Group(otree.models.BaseGroup):
 	def set_payoffs(self):
 		
 		contrib = [float(Fraction(p.contribution)) for p in self.get_players()]
-		
+		contrib_1 = contrib
+		contrib_1.remove(min(contrib_1))
 		self.provision_success = (
 			min(contrib) > 0 or 
-			min(contrib.remove(min(contrib))) == 1/2
+			min(contrib_1) == 1/2
 		)
 		
 		if self.provision_success:
