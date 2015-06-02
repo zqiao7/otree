@@ -31,8 +31,8 @@ class Results(Page):
 	def vars_for_template(self):
 
 		return {
-            'whether provision': self.group.provision_success,
-            'individual_earnings': self.player.payoff,
+            'whether_provision': self.Group.provision_success,
+            'individual_earnings': self.Player.payoff,
         }
 
 

@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Page title
+    Results
 {% endblock %}
 
 {% block content %}
@@ -15,6 +15,21 @@ Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
 http://getbootstrap.com/components/
 
 -->
+
+<table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>You contributed:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>Other participants contributed:</td><td></td></tr>
+        {% for p in player.get_others_in_group %}
+            <tr><td></td><td>{{ p.contribution }}</td></tr>
+        {% endfor %}
+
+        <tr><td colspan="2"><hr/></td></tr>
+		<tr><td>Is the project provision successful?  -- {{ Group.provision_success }}</td></tr> 
+        
+		<tr><td colspan="2"><hr/></td></tr>
+		<tr><td>So you will get:</td><td>{{ player.payoff }}</td></tr>
+    </table>
+    <p></p>
 
     {% next_button %}
 {% endblock %}
