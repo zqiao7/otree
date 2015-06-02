@@ -7,7 +7,17 @@
 
 {% block content %}
 
-    {% formfield player.contribution with label="How much will you contribute to the project (from 0 to 100)?" %}
+	<p>
+		The cost of the project is <strong>{{ Constants.cost }}</strong>.
+	</p>
+
+
+    <p>
+        Your value to the object is <strong>{{ player.private_value }}</strong>.
+		
+    </p>
+	
+    {% formfield player.contribution with label="How much will you contribute to the project (in proportion to the total cost)?"%}
 
     {% next_button %}
 

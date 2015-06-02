@@ -45,12 +45,12 @@ class Group(otree.models.BaseGroup):
 
 	
 	provision_success = models.BooleanField()
-	individual_share = models.BooleanField()
+	num_of_members = models.CurrencyField()
 	
 	def set_payoffs(self):
 		
 		contrib = [float(Fraction(p.contribution)) for p in self.get_players()]
-		contrib_1 = contrib
+		contrib_1 = [float(Fraction(p.contribution)) for p in self.get_players()]
 		contrib_1.remove(min(contrib_1))
 		self.provision_success = (
 			min(contrib) > 0 or 
@@ -58,22 +58,27 @@ class Group(otree.models.BaseGroup):
 		)
 		
 		if self.provision_success:
-			if min(contrib)>0:
+			if min(contrib) > 0:
 				num_of_members = 3
 			else:
 				num_of_members = 2
-			
+		else:
+			num_of_members = 0
 		
 		for p in self.get_players():
 			
 			if self.provision_success:
-				p.individual_share = p.private_value > min(Constants.valuation)
-				if p.individual_share:
+				p.member = Fraction(p.contribution) > 0
+				if p.member:
+					p.share = Constants.offer_choices[::-1][num_of_members-2]
 					p.payoff = p.private_value - Constants.cost/num_of_members
 				else:
 					p.payoff = Constants.payoff_if_excluded
+					p.share = Constants.offer_choices[0]
 			else:
+				p.member = False
 				p.payoff = Constants.payoff_if_fail
+				p.share = Constants.offer_choices[0]
 
 
 class Player(otree.models.BasePlayer):
@@ -91,6 +96,13 @@ class Player(otree.models.BasePlayer):
 		choices = Constants.offer_choices,
 		doc="""The player's choice""",
 		widget=widgets.RadioSelect()
+	)
+	
+	member = models.BooleanField()
+	
+	share = models.CharField(
+		choices = Constants.offer_choices,
+		doc="""The player's actual share of cost"""
 	)
 	
 	def generate_private_value(self):

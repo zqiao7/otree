@@ -10,10 +10,14 @@ from .models import Constants
 	
 	
 class  Contribute(Page):
-
+ 
 	form_model = models.Player
 	form_fields = ['contribution']
 	
+	def vars_for_template(self):
+		#if self.player.private_value is None:
+			self.player.private_value = self.player.generate_private_value()
+			
 	auto_submit_values = {'contribution': Constants.offer_choices[1]}
 
 
@@ -32,9 +36,12 @@ class Results(Page):
 
 	def vars_for_template(self):
 
+		self.group.set_payoffs
+		
 		return {
             'whether_provision': self.group.provision_success,
             'individual_earnings': self.player.payoff,
+			'member_num': self.group.num_of_members
         }
 
 
