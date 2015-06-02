@@ -45,7 +45,7 @@ class Group(otree.models.BaseGroup):
 
 	
 	provision_success = models.BooleanField()
-	num_of_members = models.CurrencyField()
+	num_of_members = models.IntegerField()
 	
 	def set_payoffs(self):
 		
@@ -59,19 +59,19 @@ class Group(otree.models.BaseGroup):
 		
 		if self.provision_success:
 			if min(contrib) > 0:
-				num_of_members = 3
+				self.num_of_members = 3
 			else:
-				num_of_members = 2
+				self.num_of_members = 2
 		else:
-			num_of_members = 0
+			self.num_of_members = 0
 		
 		for p in self.get_players():
 			
 			if self.provision_success:
 				p.member = Fraction(p.contribution) > 0
 				if p.member:
-					p.share = Constants.offer_choices[::-1][num_of_members-2]
-					p.payoff = p.private_value - Constants.cost/num_of_members
+					p.share = Constants.offer_choices[::-1][self.num_of_members-2]
+					p.payoff = p.private_value - Constants.cost/self.num_of_members
 				else:
 					p.payoff = Constants.payoff_if_excluded
 					p.share = Constants.offer_choices[0]

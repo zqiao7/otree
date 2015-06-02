@@ -41,7 +41,7 @@ class Results(Page):
 		return {
             'whether_provision': self.group.provision_success,
             'individual_earnings': self.player.payoff,
-			'member_num': self.group.num_of_members
+			'member_num': self.group.num_of_members,
         }
 
 
