@@ -7,7 +7,10 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-	
+class Introduction(Page):
+
+    """Description of the game: How to play and returns expected"""
+    pass
 	
 class  Contribute(Page):
  
@@ -46,6 +49,7 @@ class Results(Page):
 
 
 page_sequence =[
+		Introduction,
         Contribute,
         ResultsWaitPage,
         Results
