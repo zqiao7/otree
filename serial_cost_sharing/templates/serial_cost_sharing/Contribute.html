@@ -8,12 +8,12 @@
 {% block content %}
 
 	<p>
-		The cost of the project is <strong>{{ Constants.cost }}</strong>.
+		The cost of the gadget is <strong>{{ Constants.cost }}</strong>.
 	</p>
 
 
     <p>
-        Your value to the object is <strong>{{ player.private_value }}</strong>.
+        Your value to the gadget is <strong>{{ player.private_value }}</strong>.
 		
     </p>
 	
@@ -21,6 +21,6 @@
 
     {% next_button %}
 
-
+	{% include 'serial_cost_sharing/Instruction.html' %}
 
 {% endblock %}
