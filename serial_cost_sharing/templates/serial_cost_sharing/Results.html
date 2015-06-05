@@ -25,13 +25,13 @@ http://getbootstrap.com/components/
         {% endfor %}
 
         <tr><td colspan="2"><hr/></td></tr>
-		<tr><td>Is the project provision successful? </td><td>{{ whether_provision }}</td></tr> 
-		<tr><td>Number of members: </td><td>{{ member_num }} </td></tr>
-		<tr><td>Are you a member? </td><td>{{ player.member }} </td></tr>
+		<tr><td>Is the gadget purchased? </td><td>{{ whether_provision }}</td></tr> 
+		<tr><td>Number of users: </td><td>{{ member_num }} </td></tr>
+		<tr><td>Are you a user? </td><td>{{ player.member }} </td></tr>
 		
 		
 		<tr><td colspan="2"><hr/></td></tr>
-		<tr><td>Your valuation of the project: </td><td>{{ player.private_value }}</td><tr>
+		<tr><td>Your valuation of the gadget: </td><td>{{ player.private_value }}</td><tr>
 		<tr><td>Your actual contribution: </td><td> {{ player.share }} of {{ Constants.cost }}</td><tr>
 		<tr><td>Your payoff:</td><td>{{ individual_earnings }}</td></tr>
 	</table>

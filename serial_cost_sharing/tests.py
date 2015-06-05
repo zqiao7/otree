@@ -14,6 +14,7 @@ class PlayerBot(Bot):
     """Bot that plays one round"""
 
     def play_round(self):
+		self.submit(views.Introduction)
 		self.submit(
 			views.Contribute, {"contribution": random.choice(Constants.offer_choices)}
 		)
