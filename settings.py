@@ -299,7 +299,7 @@ SESSION_TYPES = [
     },
     {
         'name': 'club_good_game_pcs',
-        'display_name': "Club Good Game",
+        'display_name': "Club Good Game (pcs)",
         'num_demo_participants': 3,
         'app_sequence': [
             'proportional_cost_sharing', 'payment_info'

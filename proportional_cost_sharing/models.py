@@ -47,7 +47,7 @@ class Group(otree.models.BaseGroup):
 		if self.provision_success:
 			for p in self.get_players():
 				p.share = p.contribution/total_contrib
-				p.payoff = p.private_value - Constatns.cost * p.share
+				p.payoff = p.private_value - Constants.cost * p.share
 		else:
 			for p in self.get_players():
 				p.share = 0
