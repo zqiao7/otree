@@ -4,98 +4,31 @@
         In this study, you will be in a randomly formed group of {{ Constants.players_per_group }} participants. Your group must decide whether or not to purchase a fictitious good, called a gadget, and exactly which members of your group are allowed to use the gadget. 
     </p>
     <p>
-        For your group to purchase a gadget, your group must pay a total of {{ Constants.cost }}. It is possible that not everyone in your group is allowed to use the gadget. Those members of your group who are allowed to use the gadget are called users and pay an <strong>equal share</strong> of the cost. Those members of your group who are not allowed to use the gadget are called nonusers and do not pay any share of the cost. 
-    </p>
-    <p>
-        Therefore, if all members are users, the cost is split three ways, so each member pays 34 points. If only two members are users, the cost is split two ways, and each of two users pay 51 points, and if only one member is a user, then this user pays the entire {{ Constants.cost }}.
-    </p>
-    <p>
-    	To determine whether your group buys the gadget, every member of the group will simultaneously submit a message. Every participant must choose one of three messages: willing to contribute "0", "1/3" or "1/2" of the total cost. You are free to submit any of these three messages. 
+        For your group to purchase a gadget, your group must pay a total of {{ Constants.cost }}. To determine whether your group buys the gadget, every member of the group will simultaneously submit a message. Every participant must choose to contribute a non-negative integer.
     </P>
     <p>
-    	The messages are used to determine whether your group buys the gadget and which members are users. If you submit "0", then you are a non-user and your earnings are {{ Constants.payoff_if_excluded }}. If you send "1/3", it means that you are willing to be a user only if the cost is split three ways. "1/2" means that you are willing to be a user if the cost is split either two or three ways. The gadget is purchased only if there are enough participants who are willing to take an <strong>equal share</strong> of the cost. The following table summarizes the possible situations. 
-    </p>
-    
-    <table class="table-bordered" style="width:800px; margin-top:20px;">
-    	<tr><td align="center">Participant 1's choice</td>
-    		<td align="center">Participant 2's choice</td>
-    		<td align="center">Participant 3's choice</td>
-    		<td align="center">Is the gadget purchased</td>
-    		<td align="center">Users</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">0</td>
-    		<td align="center">0</td>
-    		<td align="center">False</td>
-    		<td align="center">Null</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">0</td>
-    		<td align="center">1/3</td>
-    		<td align="center">False</td>
-    		<td align="center">Null</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">0</td>
-    		<td align="center">1/2</td>
-    		<td align="center">False</td>
-    		<td align="center">Null</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">1/3</td>
-    		<td align="center">1/3</td>
-    		<td align="center">False</td>
-    		<td align="center">Null</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">1/3</td>
-    		<td align="center">1/2</td>
-    		<td align="center">False</td>
-    		<td align="center">Null</td>
-    	</tr>
-    	<tr><td align="center">0</td>
-    		<td align="center">1/2</td>
-    		<td align="center">1/2</td>
-    		<td align="center">True</td>
-    		<td align="center">Participant 2,3</td>
-    	</tr>
-    	<tr><td align="center">1/3</td>
-    		<td align="center">1/3</td>
-    		<td align="center">1/3</td>
-    		<td align="center">True</td>
-    		<td align="center">Participant 1,2,3</td>
-    	</tr>
-    	<tr><td align="center">1/3</td>
-    		<td align="center">1/3</td>
-    		<td align="center">1/2</td>
-    		<td align="center">True</td>
-    		<td align="center">Participant 1,2,3</td>
-    	</tr>
-    	<tr><td align="center">1/3</td>
-    		<td align="center">1/2</td>
-    		<td align="center">1/2</td>
-    		<td align="center">True</td>
-    		<td align="center">Participant 1,2,3</td>
-    	</tr>
-    	<tr><td align="center">1/2</td>
-    		<td align="center">1/2</td>
-    		<td align="center">1/2</td>
-    		<td align="center">True</td>
-    		<td align="center">Participant 1,2,3</td>
-    	</tr>
-    </table>
-    
-    <p>
-    	Before making any decision, you will learn the user value of the gadget to your. The value of the gadget may differ from participant to participant and is randomly and independently drawn from {{ Constants.valuation }} for each participant. Notice that no one else in your group knows your user value and you do not know the user value of anyone else in your group.
+    	The messages are used to determine whether your group buys the gadget. If the sum of the contributions exceeds the total cost {{ Constants.cost }}, the gadget is purchased and all participants with positive contributions are users. Each user shares a proportion (<strong>his/her own contribution over the total contribution</strong>) of the total cost. Nonuser pays nothing and don't get the access to the gadget. 
     </p>
     <p>
-    	<strong>Nonuser's payoff</strong> is 0 since they contributes and receives nothing. 
+    	If the sum of the contributions is less than the total cost {{ Constants.cost }}, the gadget is not purchased. All participants pay nothing and don't get access to the gadget.  
+    </p> 
+    <p>
+    	Before making any decision, you will learn the user value of the gadget to you. The value of the gadget may differ from participant to participant and is randomly and independently drawn from {{ Constants.valuation }} for each participant. Notice that no one else in your group knows your user value and you do not know the user value of anyone else in your group.
     </p>
     <p>
-    	User's payoff is calculated as (in points) <br/>
+    	If the gadget is not purchased, all participants are nonusers. If the gadget is purchased, those participants who contribute a positive amount are users and those who contribute 0 are nonusers.
+    </p>
+    <p>
+    	<strong>Nonuser's payoff</strong> is always 0 since they contributes and receives nothing. 
+    </p>
+    <p>
+    	If the gadget is purchased, the user's payoff is calculated as (in points) <br/>
     	<strong>
-    		User's payoff = His/her private value of the gadget - Total cost of the gadget / Number of users
+    		User's payoff = His or her private value of the gadget - Total cost of the gadget *(His or her contribution / Total contribution)
     	</strong><br/>
+    </p>
+    <p>
+    	Note that the "Total contribution" is the sum of contributions from everyone and can exceed the "Total cost".
     </p>
     <p>
     For your convenience, these instructions will remain available to you on all subsequent screens of this study.
