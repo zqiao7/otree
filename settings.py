@@ -297,6 +297,14 @@ SESSION_TYPES = [
             'serial_cost_sharing', 'payment_info'
         ],
     },
+    {
+        'name': 'club_good_game_pcs',
+        'display_name': "Club Good Game",
+        'num_demo_participants': 3,
+        'app_sequence': [
+            'proportional_cost_sharing', 'payment_info'
+        ],
+    },
 ]
 
 
