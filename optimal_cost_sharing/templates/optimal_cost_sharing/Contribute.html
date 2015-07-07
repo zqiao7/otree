@@ -17,15 +17,23 @@
 		
     </p>
 	
-<table class="table-condensed" style="width:500px; margin-top:20px;">
+<table class="table-bordered" style="width:500px; margin-top:20px;">
         
-		<tr><td>Value type</td><td>Private value of the gadget</td></tr>
-		<tr><td>Low</td><td>29</td></tr>
-		<tr><td>Median</td><td>45</td></tr>
-		<tr><td>High</td><td>90</td></tr>
+		<tr><td align="center">Report</td>
+			<td align="center">Private value the report means</td></tr>
+		<tr><td align="center">Low</td>
+			<td align="center">29</td></tr>
+		<tr><td align="center">Median</td>
+			<td align="center">45</td></tr>
+		<tr><td align="center">High</td>
+			<td align="center">90</td></tr>
 
 	</table>
-	
+	<p>
+		The gadget is purchased if the sum of the reported value is greater or equal to 104.
+	</p>
+	<p>
+	</p>	
     {% formfield player.contribution with label="What value type do you want to tell the group ?"%}
 
     {% next_button %}
