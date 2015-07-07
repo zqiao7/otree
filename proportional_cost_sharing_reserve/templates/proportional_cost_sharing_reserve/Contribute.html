@@ -1,0 +1,26 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribute
+{% endblock %}
+
+{% block content %}
+
+	<p>
+		The cost of the gadget is <strong>{{ Constants.cost }}</strong>.
+	</p>
+
+
+    <p>
+        Your value to the gadget is <strong>{{ player.private_value }}</strong>.
+		
+    </p>
+	
+    {% formfield player.contribution with label="How much will you contribute to the project (in proportion to the total cost)?"%}
+
+    {% next_button %}
+
+	{% include 'proportional_cost_sharing/Instruction.html' %}
+
+{% endblock %}

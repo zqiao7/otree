@@ -313,6 +313,14 @@ SESSION_TYPES = [
             'optimal_cost_sharing', 'payment_info'
         ],
     },
+    {
+        'name': 'club_good_game_pcs_reserve',
+        'display_name': "Club Good Game (pcs w/ reservation)",
+        'num_demo_participants': 6,
+        'app_sequence': [
+            'proportional_cost_sharing_reserve', 'payment_info'
+        ],
+    },
 ]
 
 
