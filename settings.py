@@ -305,6 +305,14 @@ SESSION_TYPES = [
             'proportional_cost_sharing', 'payment_info'
         ],
     },
+    {
+        'name': 'club_good_game_ocs',
+        'display_name': "Club Good Game (ocs)",
+        'num_demo_participants': 3,
+        'app_sequence': [
+            'optimal_cost_sharing', 'payment_info'
+        ],
+    },
 ]
 
 

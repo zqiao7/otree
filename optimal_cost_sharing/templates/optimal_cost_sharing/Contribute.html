@@ -1,0 +1,35 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribute
+{% endblock %}
+
+{% block content %}
+
+	<p>
+		The cost of the gadget is <strong>{{ Constants.cost }}</strong>.
+	</p>
+
+
+    <p>
+        The gadget's value to you is <strong>{{ player.private_value }}</strong>.
+		
+    </p>
+	
+<table class="table-condensed" style="width:500px; margin-top:20px;">
+        
+		<tr><td>Value type</td><td>Private value of the gadget</td></tr>
+		<tr><td>Low</td><td>29</td></tr>
+		<tr><td>Median</td><td>45</td></tr>
+		<tr><td>High</td><td>90</td></tr>
+
+	</table>
+	
+    {% formfield player.contribution with label="What value type do you want to tell the group ?"%}
+
+    {% next_button %}
+
+	{% include 'optimal_cost_sharing/Instruction.html' %}
+
+{% endblock %}
