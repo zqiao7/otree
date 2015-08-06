@@ -20,7 +20,7 @@ Proportional cost sharing with rebate, from Gailmard and Palfrey (2005) JPE
 class Constants:
 	name_in_url = 'proportional_cost_sharing'
 	players_per_group = 3
-	num_rounds = 3
+	num_rounds = 5
 	cost = c(102)						#provision cost
 	valuation = [c(29), c(45), c(90)]		#valuation
 	payoff_if_fail = c(0)

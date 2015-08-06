@@ -20,7 +20,7 @@ Proportional cost sharing with reservation.
 class Constants:
 	name_in_url = 'proportional_cost_sharing_reserve'
 	players_per_group = 3
-	num_rounds = 2
+	num_rounds = 5
 	cost = c(102)						#provision cost
 	valuation = [c(29), c(45), c(90)]		#valuation
 	payoff_if_fail = c(0)
