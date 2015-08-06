@@ -321,6 +321,22 @@ SESSION_TYPES = [
             'proportional_cost_sharing_reserve', 'payment_info'
         ],
     },
+    {
+        'name': 'club_good_game_lab1',
+        'display_name': "Club Good Game (pcs scs + pcsr)",
+        'num_demo_participants': 18,
+        'app_sequence': [
+            'serial_cost_sharing','proportional_cost_sharing_reserve', 'payment_info'
+        ],
+    },
+    {
+        'name': 'club_good_game_lab2',
+        'display_name': "Club Good Game (pcs ocs + pcs",
+        'num_demo_participants': 18,
+        'app_sequence': [
+            'optimal_cost_sharing','proportional_cost_sharing', 'payment_info'
+        ],
+    },
 ]
 
 
