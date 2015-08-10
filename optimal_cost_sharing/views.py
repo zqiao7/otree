@@ -10,6 +10,11 @@ from .models import Constants
 class Introduction(Page):
 
     """Description of the game: How to play and returns expected"""
+
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+        
+    
     pass
 	
 class  Contribute(Page):

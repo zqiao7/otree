@@ -333,6 +333,7 @@ SESSION_TYPES = [
         'name': 'club_good_game_lab2',
         'display_name': "Club Good Game (pcs ocs + pcs",
         'num_demo_participants': 6,
+        'real_world_currency_per_point': 0.1,
         'app_sequence': [
             'optimal_cost_sharing','proportional_cost_sharing', 'payment_info'
         ],
