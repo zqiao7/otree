@@ -17,7 +17,12 @@ http://getbootstrap.com/components/
 -->
 
 <table class="table-condensed" style="width:500px; margin-top:20px;">
-        
+		<tr>
+			<td>Round number:</td>
+			<td>{{ subsession.round_number }} / {{ Constants.num_rounds }}</td>
+		</tr>
+		<tr><td colspan="2"><hr/></td></tr>
+	        
 		<tr><td>Your choice of contribution:</td><td>{{ player.contribution }} of {{ Constants.cost }}</td></tr>
         <tr><td>Other participants choose to contribute:</td><td></td></tr>
         {% for p in player.get_others_in_group %}

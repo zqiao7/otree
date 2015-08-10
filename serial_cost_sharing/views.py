@@ -7,6 +7,11 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+class Frontpage(Page):
+	
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+        
 class Introduction(Page):
 
     """Description of the game: How to play and returns expected"""
@@ -54,6 +59,7 @@ class Results(Page):
 
 
 page_sequence =[
+		Frontpage,
 		Introduction,
         Contribute,
         ResultsWaitPage,

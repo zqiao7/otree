@@ -1,0 +1,14 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    In the following session, you will play a new game for {{ Constants.num_rounds }} rounds.
+{% endblock %}
+
+{% block content %}
+	<p>
+		Please read the instruction carefully. Your will earn points for each round and the points you earn depends on your choices.
+	</p>
+	
+	{% next_button %}
+{% endblock %}
