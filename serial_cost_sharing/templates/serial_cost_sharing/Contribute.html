@@ -5,8 +5,16 @@
     Contribute
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
+	<table>
+		<tr>
+			<td>Round number:</td>
+			<td>{{ subsession.round_number }} / {{ Constants.num_rounds }}</td>
+		</tr>
+	</table>
+	<tr><td colspan="2"><hr/></td></tr>
+	
 	<p>
 		The cost of the gadget is <strong>{{ Constants.cost }}</strong>.
 	</p>
