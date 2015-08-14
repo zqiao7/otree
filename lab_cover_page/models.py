@@ -33,12 +33,12 @@ class Group(otree.models.BaseGroup):
     # <built-in>
     subsession = models.ForeignKey(Subsession)
     # </built-in>
-
+    pass
 
 class Player(otree.models.BasePlayer):
     # <built-in>
     subsession = models.ForeignKey(Subsession)
     group = models.ForeignKey(Group, null = True)
     # </built-in>
-
+    pass
 

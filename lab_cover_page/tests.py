@@ -14,7 +14,7 @@ class PlayerBot(Bot):
     """Bot that plays one round"""
 
     def play_round(self):
-        self.submit(Cover_page)
+        self.submit(views.Cover_page)
 
     def validate_play(self):
         pass

@@ -338,6 +338,14 @@ SESSION_TYPES = [
             'optimal_cost_sharing','proportional_cost_sharing', 'payment_info'
         ],
     },
+    {
+        'name': 'cover_page',
+        'display_name': "Club Good Game (pcs ocs + pcs",
+        'num_demo_participants': 3,
+        'app_sequence': [
+	'lab_cover_page'
+        ],
+    },
 ]
 
 
