@@ -335,7 +335,7 @@ SESSION_TYPES = [
         'num_demo_participants': 6,
         'real_world_currency_per_point': 0.1,
         'app_sequence': [
-            'optimal_cost_sharing','proportional_cost_sharing', 'payment_info'
+            'lab_cover_page','optimal_cost_sharing','proportional_cost_sharing', 'payment_info'
         ],
     },
     {
