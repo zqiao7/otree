@@ -29,10 +29,10 @@ class  Contribute(Page):
 	form_fields = ['contribution']
 	
 	def vars_for_template(self):
-		if self.player.private_value is None:
-			self.player.private_value = self.player.generate_private_value()
+		#if self.player.private_value is None:
+		self.player.private_value = self.player.generate_private_value()
 			
-	#auto_submit_values = {'contribution': random.randint(0, Player.private_value)}
+	auto_submit_values = {'contribution': Constants.offer_choices[1]}
 
 
 
