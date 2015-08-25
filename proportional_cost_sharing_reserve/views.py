@@ -11,7 +11,7 @@ import random
 
 
 class Frontpage(Page):
-	
+    
     def is_displayed(self):
         return self.subsession.round_number == 1
         
@@ -24,37 +24,37 @@ class Introduction(Page):
         return self.subsession.round_number == 1
     
     pass
-	
+    
 class  Contribute(Page):
  
-	form_model = models.Player
-	form_fields = ['contribution']
-	
-	def vars_for_template(self):
-		if self.player.private_value is None:
-			self.player.private_value = self.player.generate_private_value()
-			
-	#auto_submit_values = {'contribution': random.randint(0, Player.private_value)}
+    form_model = models.Player
+    form_fields = ['contribution']
+    
+    def vars_for_template(self):
+#       if self.player.private_value is None:
+        self.player.private_value = self.player.generate_private_value()
+            
+    #auto_submit_values = {'contribution': random.randint(0, Player.private_value)}
 
 
 
 
 class ResultsWaitPage(WaitPage):
 
-	def after_all_players_arrive(self):
-		self.group.set_payoffs()
-		
-	def body_text(self):
-		return "Waiting for other participants to contribute."
+    def after_all_players_arrive(self):
+        self.group.set_payoffs()
+        
+    def body_text(self):
+        return "Waiting for other participants to contribute."
 
 
 class Results(Page):
 
-	def vars_for_template(self):
+    def vars_for_template(self):
 
-		self.group.set_payoffs
-		
-		return {
+        self.group.set_payoffs
+        
+        return {
             'whether_provision': self.group.provision_success,
             'whether_member': self.player.member,
             'individual_share': self.player.share*Constants.cost,
@@ -63,8 +63,8 @@ class Results(Page):
 
 
 page_sequence =[
-		Frontpage,
-		Introduction,
+        Frontpage,
+        Introduction,
         Contribute,
         ResultsWaitPage,
         Results

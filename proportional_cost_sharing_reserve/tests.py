@@ -15,11 +15,12 @@ class PlayerBot(Bot):
     """Bot that plays one round"""
 
     def play_round(self):
-		self.submit(views.Introduction)
-		self.submit(
-			views.Contribute, {"contribution": random.randint(0,29)}
-		)
-		self.submit(views.Results)
+        self.submit(views.Frontpage)
+        self.submit(views.Introduction)
+        self.submit(
+            views.Contribute, {"contribution": Constants.offer_choices[10]}
+        )
+        self.submit(views.Results)
 
     def validate_play(self):
         pass
