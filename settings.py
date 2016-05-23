@@ -322,6 +322,14 @@ SESSION_TYPES = [
         ],
     },
     {
+        'name': 'club_good_game_pcs_transfer',
+        'display_name': "Club Good Game (pcs w/ reservation and transfer)",
+        'num_demo_participants': 6,
+        'app_sequence': [
+            'proportional_cost_sharing_transfer', 'payment_info'
+        ],
+    },
+    {
         'name': 'club_good_game_lab1',
         'display_name': "Club Good Game (pcs scs + pcsr)",
         'num_demo_participants': 18,
