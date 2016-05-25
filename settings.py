@@ -95,7 +95,7 @@ MTURK_WORKER_REQUIREMENTS = [
     NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5)
 ]
 
-SESSION_TYPE_DEFAULTS = {
+SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.01,
     'participation_fee': 10.00,
     'num_bots': 12,
@@ -112,7 +112,7 @@ SESSION_TYPE_DEFAULTS = {
     },
 }
 
-SESSION_TYPES = [
+SESSION_CONFIGS = [
     # {
         # 'name': 'public_goods',
         # 'display_name': "Public Goods",
