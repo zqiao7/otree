@@ -65,10 +65,10 @@ class Group(otree.models.BaseGroup):
             for p in self.get_players():
                 p.member = int(p.contribution) >= Constants.reserve
                 p.share = int(p.member)*int(p.contribution)/total_contrib
-                p.lower = sum(i > p.contribution for i in contrib_1)
-                p.higher = sum(i < p.contribution for i in contrib_1)
-                p.transfer = (p.lower-p.higher)*Constants.transfer
-                p.payoff = int(p.member)*(p.private_value - Constants.cost*p.share - p.transfer) 
+                lower = int(p.member)*sum(x > int(p.contribution) for x in contrib_1)
+                higher = int(p.member)*sum(x < int(p.contribution) for x in contrib_1)
+                p.transfer = (lower-higher)*Constants.transfer
+                p.payoff = int(p.member)*(p.private_value - Constants.cost*p.share - p.transfer) + (1 - int(p.member))*Constants.payoff_if_fail
         else:
             for p in self.get_players():
                 p.member = 1>2
@@ -100,8 +100,7 @@ class Player(otree.models.BasePlayer):
         doc="""The player's actual share of cost"""
     )
 
-    lower = models.IntegerField()
-    higher = models.IntegerField()
+    transfer = models.IntegerField()
 
     def generate_private_value(self):
         return random.choice(Constants.valuation)

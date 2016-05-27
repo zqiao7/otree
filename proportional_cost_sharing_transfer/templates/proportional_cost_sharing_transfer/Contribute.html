@@ -23,6 +23,10 @@
         Your value to the gadget is <strong>{{ player.private_value }}</strong>.
 		
     </p>
+
+    <p>
+        To become a member, you need to contribute at least <strong>{{ Constants.reserve }}</strong>.
+    </p>
 	
     {% formfield player.contribution with label="How much will you contribute to the project (in proportion to the total cost)?"%}
 

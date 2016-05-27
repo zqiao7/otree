@@ -324,7 +324,7 @@ SESSION_CONFIGS = [
     {
         'name': 'club_good_game_pcs_transfer',
         'display_name': "Club Good Game (pcs w/ reservation and transfer)",
-        'num_demo_participants': 6,
+        'num_demo_participants': 3,
         'app_sequence': [
             'proportional_cost_sharing_transfer', 'payment_info'
         ],
